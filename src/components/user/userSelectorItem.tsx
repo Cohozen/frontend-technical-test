@@ -1,6 +1,5 @@
-
 import { useDispatch } from 'react-redux';
-import { List } from 'semantic-ui-react';
+import { List, Image } from 'semantic-ui-react';
 import { RootActions } from '../../redux/rootActions';
 import { User } from '../../types/user';
 
@@ -12,13 +11,12 @@ const UserSelectorItem = ({ user }: IUserSelectorItemProps) => {
     const dispatch = useDispatch();
 
     const ChooseUser = () => {
-        console.log("click")
         dispatch(RootActions.userActions.setProfile(user));
     }
 
     return (
         <List.Item onClick={ChooseUser}>
-            <List.Icon name='user' />
+            <Image avatar src={`${process.env.PUBLIC_URL}/avatar/small/${user.id}.jpg`} />
             <List.Content>
                 <List.Header>{user.nickname}</List.Header>
             </List.Content>

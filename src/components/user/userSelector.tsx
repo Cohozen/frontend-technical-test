@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Header, List } from 'semantic-ui-react';
 import * as usersService from '../../services/usersService'
