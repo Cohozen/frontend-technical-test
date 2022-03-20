@@ -9,6 +9,7 @@ interface UserState {
 const initialState: UserState = { profile: null };
 
 const userReducer = createReducer<UserState, userActions>(initialState)
-    .handleAction('user/SET_PROFILE', (state, action) => ({ ...state, profile: action.payload }));
+    .handleAction('user/SET_PROFILE', (state, action) => ({ ...state, profile: action.payload }))
+    .handleAction('user/RESET_PROFILE', state => ({ ...state, profile: null }));
 
 export default userReducer;
