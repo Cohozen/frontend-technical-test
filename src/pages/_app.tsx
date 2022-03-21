@@ -3,7 +3,7 @@ import { getLoggedUserId } from '../utils/getLoggedUserId'
 import '../styles/globals.css'
 import 'semantic-ui-css/semantic.min.css'
 import { Provider } from 'react-redux'
-import store from '../redux/modules/rootReducer'
+import store from '../redux/rootReducer'
 
 // Default way to get a logged user
 export const loggedUserId = getLoggedUserId()

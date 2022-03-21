@@ -5,7 +5,7 @@ interface IAvatarProps {
 }
 
 const Avatar = ({ userId }: IAvatarProps) => {
-    return <Image avatar src={`${process.env.PUBLIC_URL}/avatar/small/${userId}.jpg`} />
+    return <Image avatar size="tiny" src={`${process.env.PUBLIC_URL}/avatar/large/${userId}.jpg`} />
 }
 
 export default Avatar;

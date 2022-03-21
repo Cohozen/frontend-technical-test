@@ -24,8 +24,11 @@ const ConversationList = ({ user }: IConversationListProps) => {
         <>
             <Header as='h2' textAlign='center'>
                 Bonjour {user.nickname}
+                <Header.Subheader>
+                    {conversations.length + ` conversation${conversations.length > 1 && 's' || ''} disponible${conversations.length > 1 && 's' || ''}`}
+                </Header.Subheader>
             </Header>
-            <List selection verticalAlign='middle' size='massive'>
+            <List selection relaxed="very" verticalAlign='middle' size='massive'>
                 {conversations.map(conversation => {
                     return (
                         <ConversationListItem key={conversation.id} conversation={conversation} />

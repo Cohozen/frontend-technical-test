@@ -1,4 +1,8 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import store from '../redux/rootReducer'
+import { RootActions } from "../redux/rootActions";
+
+const { dispatch } = store;
 
 export const axiosInstance = axios.create({
     baseURL: process.env.API_URL,
@@ -6,9 +10,20 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     (config: AxiosRequestConfig) => {
+        dispatch(RootActions.applicationActions.beginLoading())
         return config;
+    }
+);
+
+axiosInstance.interceptors.response.use(
+    (response: AxiosResponse) => {
+        // Any status code that lie within the range of 2xx cause this function to trigger
+        dispatch(RootActions.applicationActions.stopLoading())
+        return response;
     },
     error => {
+        // Any status codes that falls outside the range of 2xx cause this function to trigger
+        dispatch(RootActions.applicationActions.stopLoading())
         return Promise.reject(error);
     }
 );

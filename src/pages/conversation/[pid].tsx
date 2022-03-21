@@ -3,7 +3,7 @@ import { Conversation } from '../../types/conversation';
 import * as messagesService from '../../services/messagesService'
 import * as conversationsService from '../../services/conversationsService'
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/modules/rootReducer';
+import { RootState } from '../../redux/rootReducer';
 import { Message } from '../../types/message';
 import { useEffect, useState } from 'react';
 
@@ -14,11 +14,11 @@ interface IMessagesListProps {
 
 const MessagesList = ({ messages, conversationId }: IMessagesListProps) => {
     const [conversation, setConversation] = useState<Conversation>();
-    const profile = useSelector((state: RootState) => state.user.profile);
+    const currentUser = useSelector((state: RootState) => state.user.profile);
 
     const getConversation = async () => {
-        if (profile)
-            await conversationsService.listByUser(profile.id).then(response => {
+        if (currentUser)
+            await conversationsService.listByUser(currentUser.id).then(response => {
                 const relevantConversation = response.find(c => c.id === conversationId);
                 setConversation(relevantConversation);
             });
