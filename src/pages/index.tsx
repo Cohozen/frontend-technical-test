@@ -12,6 +12,14 @@ const Home = () => (
       <Main />
     </Container>
   </>
-)
+);
+
+export const getStaticProps = async () => {
+  return {
+    props: {
+      messages: (await import(`../../messages/fr.json`)).default
+    }
+  };
+}
 
 export default Home

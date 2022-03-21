@@ -1,11 +1,14 @@
-import { Item, List, Placeholder } from 'semantic-ui-react';
+import { List, Placeholder } from 'semantic-ui-react';
 import { Conversation } from '../../types/conversation';
 import Link from 'next/link'
 import Avatar from '../user/avatar';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
 import { useEffect, useState } from 'react';
+import * as messagesService from '../../services/messagesService'
 import { User } from '../../types/user';
+import { Message } from '../../types/message';
+import ConversationListItemDescription from './conversationListItemDescription';
 
 interface IConversationListItemProps {
     conversation: Conversation;
@@ -34,7 +37,7 @@ const ConversationListItem = ({ conversation }: IConversationListItemProps) => {
                         <Avatar userId={interlocutor.id} />
                         <List.Content>
                             <List.Header>{interlocutor.nickname}</List.Header>
-                            <List.Description>Has not watched anything recently</List.Description>
+                            <ConversationListItemDescription conversationId={conversation.id} />
                         </List.Content>
                     </List.Item>
                 </Link>
@@ -44,8 +47,8 @@ const ConversationListItem = ({ conversation }: IConversationListItemProps) => {
                         <Placeholder.Line />
                         <Placeholder.Line />
                     </Placeholder.Header>
-                </Placeholder>}
-
+                </Placeholder>
+            }
         </>
     )
 }

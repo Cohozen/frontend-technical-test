@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import { getLoggedUserId } from '../utils/getLoggedUserId'
+import { NextIntlProvider } from 'next-intl';
 import '../styles/globals.css'
 import 'semantic-ui-css/semantic.min.css'
 import { Provider } from 'react-redux'
@@ -11,7 +12,9 @@ export const loggedUserId = getLoggedUserId()
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return <>
     <Provider store={store}>
-      <Component {...pageProps} />
+      <NextIntlProvider messages={pageProps.messages}>
+        <Component {...pageProps} />
+      </NextIntlProvider>
     </Provider>
   </>
 }
