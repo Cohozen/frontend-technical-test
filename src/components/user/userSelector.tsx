@@ -7,13 +7,14 @@ import UserSelectorItem from './userSelectorItem';
 const UserSelector = () => {
     const [users, setUsers] = useState<User[]>([])
 
-    const getUsers = () => {
-        usersService.list().then(response => setUsers(response))
+    const getUsers = async () => {
+        await usersService.list().then(response => setUsers(response))
     }
 
     useEffect(() => {
         getUsers();
-    }, [])
+    }, []);
+
     return (
         <>
             <Header as='h2' textAlign='center'>

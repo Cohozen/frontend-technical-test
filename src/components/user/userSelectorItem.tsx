@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { List, Image } from 'semantic-ui-react';
 import { RootActions } from '../../redux/rootActions';
 import { User } from '../../types/user';
+import Avatar from './avatar';
 
 interface IUserSelectorItemProps {
     user: User
@@ -16,7 +17,7 @@ const UserSelectorItem = ({ user }: IUserSelectorItemProps) => {
 
     return (
         <List.Item onClick={ChooseUser}>
-            <Image avatar src={`${process.env.PUBLIC_URL}/avatar/small/${user.id}.jpg`} />
+            <Avatar userId={user.id} />
             <List.Content>
                 <List.Header>{user.nickname}</List.Header>
             </List.Content>
