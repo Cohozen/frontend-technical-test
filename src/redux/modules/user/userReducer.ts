@@ -3,13 +3,13 @@ import { User } from '../../../types/user';
 import { userActions } from '../../rootActions';
 
 interface UserState {
-    profile: User;
+	profile: User;
 }
 
 const initialState: UserState = { profile: null };
 
 const userReducer = createReducer<UserState, userActions>(initialState)
-    .handleAction('user/SET_PROFILE', (state, action) => ({ ...state, profile: action.payload }))
-    .handleAction('user/RESET_PROFILE', state => ({ ...state, profile: null }));
+	.handleAction('user/SET_PROFILE', (state, action) => ({ ...state, profile: action.payload }))
+	.handleAction('user/RESET_PROFILE', state => ({ ...state, profile: null }));
 
 export default userReducer;

@@ -1,29 +1,25 @@
 import { useEffect, useState } from 'react';
-import * as messagesService from '../../services/messagesService'
-import { Message } from '../../types/message';
 import { useDateTimeFromTimestamp } from '../../hooks/useDateTimeFromTimestamp';
+import * as messagesService from '../../services/messagesService';
+import { Message } from '../../types/message';
 
 interface IConversationListItemDescriptionProps {
-    conversationId: number;
+	conversationId: number;
 }
 
 const ConversationsListItemDescription = ({ conversationId }: IConversationListItemDescriptionProps) => {
-    const [lateMessage, setLateMessage] = useState<Message>();
-    const formatedDatetime = useDateTimeFromTimestamp(lateMessage && lateMessage.timestamp)
+	const [lateMessage, setLateMessage] = useState<Message>();
+	const formatedDatetime = useDateTimeFromTimestamp(lateMessage && lateMessage.timestamp);
 
-    const getLateMessage = async () => {
-        await messagesService.getLastByConversation(conversationId).then(response => setLateMessage(response))
-    }
+	const getLateMessage = async () => {
+		await messagesService.getLastByConversation(conversationId).then(response => setLateMessage(response));
+	};
 
-    useEffect(() => {
-        getLateMessage();
-    }, [])
+	useEffect(() => {
+		getLateMessage();
+	}, []);
 
-    return (
-        <>
-            {lateMessage && `${lateMessage.body} - ${formatedDatetime}` || 'Aucun message'}
-        </>
-    )
-}
+	return <>{(lateMessage && `${lateMessage.body} - ${formatedDatetime}`) || 'Aucun message'}</>;
+};
 
 export default ConversationsListItemDescription;

@@ -1,15 +1,13 @@
-import { useDateTimeFromTimestamp } from "../../hooks/useDateTimeFromTimestamp";
+import { useDateTimeFromTimestamp } from '../../hooks/useDateTimeFromTimestamp';
 
 interface IDatetimeProps {
-    timestamp: number;
+	timestamp: number;
 }
 
 const Datetime = ({ timestamp }: IDatetimeProps) => {
-    const formatedDatetime = useDateTimeFromTimestamp(timestamp);
+	const formatedDatetime = useDateTimeFromTimestamp(timestamp);
 
-    return (
-        <time>{formatedDatetime}</time>
-    )
-}
+	return <time>{formatedDatetime}</time>;
+};
 
 export default Datetime;
