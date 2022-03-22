@@ -7,7 +7,7 @@ interface IConversationListItemDescriptionProps {
     conversationId: number;
 }
 
-const ConversationListItemDescription = ({ conversationId }: IConversationListItemDescriptionProps) => {
+const ConversationsListItemDescription = ({ conversationId }: IConversationListItemDescriptionProps) => {
     const [lateMessage, setLateMessage] = useState<Message>();
     const formatedDatetime = useDateTimeFromTimestamp(lateMessage && lateMessage.timestamp)
 
@@ -26,4 +26,4 @@ const ConversationListItemDescription = ({ conversationId }: IConversationListIt
     )
 }
 
-export default ConversationListItemDescription;
+export default ConversationsListItemDescription;

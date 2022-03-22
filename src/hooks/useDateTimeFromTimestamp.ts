@@ -10,9 +10,10 @@ export const useDateTimeFromTimestamp = (timestamp: number) => {
             const formated = new Intl.DateTimeFormat(locale, {
                 day: '2-digit',
                 month: 'long',
+                year: 'numeric',
                 hour: '2-digit',
                 minute: '2-digit'
-            }).format(timestamp)
+            }).format(timestamp * 1000)
             setFormatedValue(formated);
         }
     }, [timestamp, locale]);

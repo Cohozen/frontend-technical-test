@@ -11,7 +11,7 @@ interface IMessageProps {
 
 const MessageText = ({ message, conversationId }: IMessageProps) => {
     const currentUser = useSelector((state: RootState) => state.user.profile);
-    const formatedDatetime = useDateTimeFromTimestamp(message.timestamp)
+    const formatedDatetime = useDateTimeFromTimestamp(message.timestamp);
 
     const isMyMessage = () => {
         return currentUser && message.authorId === currentUser.id;
@@ -28,7 +28,6 @@ const MessageText = ({ message, conversationId }: IMessageProps) => {
                     position={isMyMessage() && 'left center' || 'right center'}
                     size='mini'
                 />
-
             </Grid.Column>
         </Grid.Row>
     )

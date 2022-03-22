@@ -1,0 +1,14 @@
+{
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.arrowParens": "avoid",
+    "prettier.jsxSingleQuote": false,
+    "prettier.printWidth": 120,
+    "prettier.tabWidth": 2,
+    "prettier.singleQuote": true,
+    "prettier.useTabs": true,
+    "terminal.integrated.splitCwd": "workspaceRoot"
+}
