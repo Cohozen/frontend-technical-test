@@ -10,8 +10,8 @@ const Menu = () => {
     const profile = useSelector((state: RootState) => state.user.profile);
 
     const goHome = () => {
-        dispatch(RootActions.userActions.resetProfile());
         push("/")
+        dispatch(RootActions.userActions.resetProfile());
     }
 
     return (

@@ -16,6 +16,6 @@ export const insertMessage = (conversationId: number, message: Message) => {
     return post<Message>(`/messages/${conversationId}`, message);
 };
 
-export const deleteMessage = (conversationId: number) => {
-    return del(`/message/${conversationId}`);
+export const deleteMessage = (messageId: number) => {
+    return del(`/message/${messageId}`);
 };

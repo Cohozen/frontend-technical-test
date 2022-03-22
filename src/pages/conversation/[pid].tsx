@@ -1,4 +1,4 @@
-import { List } from 'semantic-ui-react';
+import { Grid, List } from 'semantic-ui-react';
 import { Conversation } from '../../types/conversation';
 import * as messagesService from '../../services/messagesService'
 import * as conversationsService from '../../services/conversationsService'
@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
 import { Message } from '../../types/message';
 import { useEffect, useState } from 'react';
+import MessageText from '../../components/messages/messageText';
 
 interface IMessagesListProps {
     messages: Message[],
@@ -29,30 +30,13 @@ const MessagesList = ({ messages, conversationId }: IMessagesListProps) => {
     }, [])
 
     return (
-        <List>
-            {messages.map(message => {
-                return (
-                    <List.Item key={message.id}>
-                        <List.Content>
-                            <List.Header>{message.body}</List.Header>
-                            <List.Description>
-                                {message.timestamp}
-                            </List.Description>
-                        </List.Content>
-                    </List.Item>
-                )
-            })}
-
-        </List>
+        <Grid>
+            {messages.map(message => (
+                <MessageText key={message.id} conversationId={conversationId} message={message} />
+            ))}
+        </Grid>
     )
 }
-
-// export const getStaticPaths = async () => {
-//     return {
-//         paths: [],
-//         fallback: 'blocking'
-//     }
-// }
 
 export const getServerSideProps = async (context) => {
     const pid = context.params.pid;
