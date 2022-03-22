@@ -1,25 +1,16 @@
-import Main from '../components/layout/main'
-import Head from 'next/head'
-import { Container } from 'semantic-ui-react'
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/rootReducer";
+import UserSelector from '../components/user/userSelector';
+import ConversationList from '../components/conversations/conversationList';
 
-const Home = () => (
-  <>
-    <Head>
-      <title>Frontend Technical test - Leboncoin</title>
-      <meta name="description" content="Frontend exercise for developpers who want to join us on leboncoin.fr"></meta>
-    </Head>
-    <Container style={{ paddingTop: 20 }}>
-      <Main />
-    </Container>
-  </>
-);
+const Home = () => {
+  const profile = useSelector((state: RootState) => state.user.profile);
 
-export const getStaticProps = async () => {
-  return {
-    props: {
-      messages: (await import(`../../messages/fr.json`)).default
-    }
-  };
-}
+  return (
+    <>
+      {profile === null ? <UserSelector /> : <ConversationList user={profile} />}
+    </>
+  )
+};
 
 export default Home

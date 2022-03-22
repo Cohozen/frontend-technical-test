@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useIntl, useTranslations } from 'next-intl'
 import * as messagesService from '../../services/messagesService'
 import { Message } from '../../types/message';
+import { useDateTimeFromTimestamp } from '../../hooks/useDateTimeFromTimestamp';
 
 interface IConversationListItemDescriptionProps {
     conversationId: number;
@@ -9,8 +9,7 @@ interface IConversationListItemDescriptionProps {
 
 const ConversationListItemDescription = ({ conversationId }: IConversationListItemDescriptionProps) => {
     const [lateMessage, setLateMessage] = useState<Message>();
-    const t = useTranslations('Conversation')
-    const intl = useIntl()
+    const formatedDatetime = useDateTimeFromTimestamp(lateMessage && lateMessage.timestamp)
 
     const getLateMessage = async () => {
         await messagesService.getLastByConversation(conversationId).then(response => setLateMessage(response))
@@ -22,11 +21,7 @@ const ConversationListItemDescription = ({ conversationId }: IConversationListIt
 
     return (
         <>
-            {/* {lateMessage && `${lateMessage.body} - ${lateMessage.timestamp}` || 'Aucun message'} */}
-            {lateMessage && t('lastMessage', {
-                lastMessage: lateMessage.body,
-                lastUpdated: intl.formatDateTime(lateMessage.timestamp),
-            })}
+            {lateMessage && `${lateMessage.body} - ${formatedDatetime}` || 'Aucun message'}
         </>
     )
 }

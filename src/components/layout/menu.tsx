@@ -2,13 +2,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Icon, Menu as SemanticMenu } from "semantic-ui-react";
 import { RootState } from "../../redux/rootReducer";
 import { RootActions } from "../../redux/rootActions";
+import { useRouter } from "next/router";
 
 const Menu = () => {
+    const { push } = useRouter()
     const dispatch = useDispatch();
     const profile = useSelector((state: RootState) => state.user.profile);
 
     const goHome = () => {
         dispatch(RootActions.userActions.resetProfile());
+        push("/")
     }
 
     return (

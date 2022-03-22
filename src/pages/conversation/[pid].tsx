@@ -54,7 +54,6 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
     const pid = context.params.pid;
-
     const messages = await messagesService.listByConversation(pid);
 
     return {
