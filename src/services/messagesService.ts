@@ -12,7 +12,7 @@ export const getLastByConversation = (conversationId: number) => {
 	});
 };
 
-export const insertMessage = (conversationId: number, message: Message) => {
+export const insertMessage = (conversationId: number, message: Omit<Message, 'id'>) => {
 	return post<Message>(`/messages/${conversationId}`, message);
 };
 

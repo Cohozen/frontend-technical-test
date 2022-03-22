@@ -1,17 +1,15 @@
 import { useSelector } from 'react-redux';
 import { Grid, Message as SemanticMessage, Popup } from 'semantic-ui-react';
-import { useDateTimeFromTimestamp } from '../../hooks/useDateTimeFromTimestamp';
 import { RootState } from '../../redux/rootReducer';
 import { Message } from '../../types/message';
+import Datetime from '../Date/datetime';
 
 interface IMessageProps {
 	message: Message;
-	conversationId: number;
 }
 
-const MessageText = ({ message, conversationId }: IMessageProps) => {
+const MessageText = ({ message }: IMessageProps) => {
 	const currentUser = useSelector((state: RootState) => state.user.profile);
-	const formatedDatetime = useDateTimeFromTimestamp(message.timestamp);
 
 	const isMyMessage = () => {
 		return currentUser && message.authorId === currentUser.id;
@@ -21,12 +19,8 @@ const MessageText = ({ message, conversationId }: IMessageProps) => {
 		<Grid.Row>
 			<Grid.Column floated={(isMyMessage() && 'right') || 'left'} largeScreen={6} mobile={10}>
 				<Popup
-					trigger={
-						<SemanticMessage compact color={(isMyMessage() && 'blue') || null}>
-							{message.body}
-						</SemanticMessage>
-					}
-					content={formatedDatetime}
+					trigger={<SemanticMessage color={(isMyMessage() && 'blue') || null}>{message.body}</SemanticMessage>}
+					content={<Datetime timestamp={message.timestamp} />}
 					position={(isMyMessage() && 'left center') || 'right center'}
 					size="mini"
 				/>

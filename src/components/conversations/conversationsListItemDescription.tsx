@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useDateTimeFromTimestamp } from '../../hooks/useDateTimeFromTimestamp';
 import * as messagesService from '../../services/messagesService';
 import { Message } from '../../types/message';
+import Datetime from '../Date/datetime';
 
 interface IConversationListItemDescriptionProps {
 	conversationId: number;
@@ -9,7 +9,6 @@ interface IConversationListItemDescriptionProps {
 
 const ConversationsListItemDescription = ({ conversationId }: IConversationListItemDescriptionProps) => {
 	const [lateMessage, setLateMessage] = useState<Message>();
-	const formatedDatetime = useDateTimeFromTimestamp(lateMessage && lateMessage.timestamp);
 
 	const getLateMessage = async () => {
 		await messagesService.getLastByConversation(conversationId).then(response => setLateMessage(response));
@@ -19,7 +18,14 @@ const ConversationsListItemDescription = ({ conversationId }: IConversationListI
 		getLateMessage();
 	}, []);
 
-	return <>{(lateMessage && `${lateMessage.body} - ${formatedDatetime}`) || 'Aucun message'}</>;
+	return (
+		<>
+			{(lateMessage && `${lateMessage.body.substring(0, 25)}... `) || 'Aucun message'}
+			<i style={{ fontSize: 14 }}>
+				(<Datetime timestamp={lateMessage && lateMessage.timestamp} />)
+			</i>
+		</>
+	);
 };
 
 export default ConversationsListItemDescription;
