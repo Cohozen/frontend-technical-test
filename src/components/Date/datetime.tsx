@@ -6,7 +6,6 @@ interface IDatetimeProps {
 
 const Datetime = ({ timestamp }: IDatetimeProps) => {
 	const formatedDatetime = useDateTimeFromTimestamp(timestamp);
-
 	return <time>{formatedDatetime}</time>;
 };
 

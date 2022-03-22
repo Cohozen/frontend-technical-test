@@ -59,11 +59,9 @@ const ConversationView = ({ conversationId }: IMessagesListProps) => {
 
 export const getServerSideProps = async context => {
 	const pid = context.params.pid;
-	const messages = await messagesService.listByConversation(pid);
 
 	return {
 		props: {
-			messages: messages,
 			conversationId: pid,
 		},
 	};
