@@ -10,6 +10,9 @@ import Layout from '../components/layout/layout'
 export const loggedUserId = getLoggedUserId()
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
+
+
+
   return <>
     <Provider store={store}>
       <Layout>

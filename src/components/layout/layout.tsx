@@ -1,11 +1,32 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, Segment } from "semantic-ui-react";
 import { RootState } from "../../redux/rootReducer";
 import Head from 'next/head'
+import Router from "next/router";
 import Menu from "./menu";
+import { RootActions } from "../../redux/rootActions";
+import { useEffect } from "react";
 
 const Layout = ({ children }) => {
+    const dispatch = useDispatch();
     const loading = useSelector((state: RootState) => state.application.loading);
+
+    useEffect(() => {
+        const start = () => {
+            dispatch(RootActions.applicationActions.beginLoading())
+        };
+        const end = () => {
+            dispatch(RootActions.applicationActions.stopLoading())
+        };
+        Router.events.on("routeChangeStart", start);
+        Router.events.on("routeChangeComplete", end);
+        Router.events.on("routeChangeError", end);
+        return () => {
+            Router.events.off("routeChangeStart", start);
+            Router.events.off("routeChangeComplete", end);
+            Router.events.off("routeChangeError", end);
+        };
+    }, []);
 
     return (
         <>

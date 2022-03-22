@@ -31,28 +31,30 @@ const MessagesList = ({ messages, conversationId }: IMessagesListProps) => {
     return (
         <List>
             {messages.map(message => {
-                return (<List.Item>
-                    <List.Content>
-                        <List.Header>{message.body}</List.Header>
-                        <List.Description>
-                            {message.timestamp}
-                        </List.Description>
-                    </List.Content>
-                </List.Item>)
+                return (
+                    <List.Item key={message.id}>
+                        <List.Content>
+                            <List.Header>{message.body}</List.Header>
+                            <List.Description>
+                                {message.timestamp}
+                            </List.Description>
+                        </List.Content>
+                    </List.Item>
+                )
             })}
 
         </List>
     )
 }
 
-export const getStaticPaths = async () => {
-    return {
-        paths: [],
-        fallback: 'blocking'
-    }
-}
+// export const getStaticPaths = async () => {
+//     return {
+//         paths: [],
+//         fallback: 'blocking'
+//     }
+// }
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
     const pid = context.params.pid;
     const messages = await messagesService.listByConversation(pid);
 
