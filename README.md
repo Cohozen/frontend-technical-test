@@ -1,3 +1,20 @@
+# My app
+
+## Process
+
+I created a page allowing the impersonation of a user. Then I added the list of conversations of the selected user. I used the Semantic-Ui library because I know it very well and I didn't have time to devote to making another one work or doing css.
+
+I have set up services with Axios to facilitate calls to the server.
+I also set up a store with Redux for communication between components. My configuration is really very simple but it could allow the storage of messages to make conversations more fluid for example.
+
+# ToDo
+
+- Tests : I have never had the opportunity to set up tests on a Front-end application, I ask that you learn this part, which I know very well on the Back-end side.
+- Error handling : Add a toast or a message when trapping errors with axios. Add a custom page for routing errors.
+- Add chat with new user.
+
+---
+
 # Context :
 
 At leboncoin, our users can share messages about a transaction, or ask for informations about any products.
